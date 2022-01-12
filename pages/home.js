@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <Box h={'100%'} p={4}>
       <Heading>Find your style</Heading>
-      <FilterButtons />
+      <FilterButtons mt={4} mb={4} />
       <ProductsCaroussel />
       <ProductsList mt={8} />
     </Box>
@@ -27,7 +27,7 @@ const Home = () => {
 
 export default Home;
 
-const FilterButtons = () => {
+const FilterButtons = ({ ...props }) => {
   const filters = [
     {
       id: '1',
@@ -40,16 +40,10 @@ const FilterButtons = () => {
     },
   ];
   return (
-    <ButtonGroup>
+    <ButtonGroup {...props}>
       {filters.map((item) => {
         return (
-          <Button
-            key={item.id}
-            // borderRadius={8}
-            // color="gray.700"
-            // backgroundColor="gray.800"
-            variant={item.checked ? 'outline' : 'solid'}
-          >
+          <Button key={item.id} variant={item.checked ? 'outline' : 'solid'}>
             {item.title}
           </Button>
         );
@@ -119,7 +113,7 @@ const MaskedText = ({ children, ...props }) => {
 const ProductsList = ({ ...rest }) => {
   return (
     <Box {...rest}>
-      <Flex alignItems="center">
+      <Flex alignItems="center" mb={4}>
         <Heading as="h3" size="lg">
           Products
         </Heading>

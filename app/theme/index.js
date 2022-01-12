@@ -1,13 +1,14 @@
 import { extendTheme } from '@chakra-ui/react';
 
-import { Button } from './components/button';
+import Button from './components/button';
+
 import { styles } from './styles';
 import { colors } from './colors';
 
 const overrides = {
   fonts: {
-    heading: 'Roboto',
-    body: 'Roboto',
+    heading: 'Poppins',
+    body: 'Poppins',
   },
   colors,
   styles,

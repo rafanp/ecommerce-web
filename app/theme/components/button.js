@@ -1,4 +1,23 @@
-export const Button = {
+const SolidButton = (props) => ({
+  bg: 'gray.800',
+  color: 'white',
+  _active: {
+    bg: 'gray.700',
+    opacity: 0.4,
+  },
+  _focus: {
+    bg: 'gray.800',
+  },
+  _hover: {
+    bg: 'gray.800',
+  },
+  // _click: {
+
+  // }
+  // bg: props.colorMode === 'dark' ? 'green.300' : 'red.500',
+});
+
+const Button = {
   baseStyle: {
     fontWeight: 'semi-bold',
     borderRadius: '12px',
@@ -17,29 +36,13 @@ export const Button = {
       bg: 'red.400',
       boxShadow: '0 0 2px 2px #efdfde',
     },
-    solid: (props) => ({
-      bg: 'gray.800',
-      color: 'white',
-      _active: {
-        bg: 'gray.700',
-        opacity: 0.4,
-      },
-      _focus: {
-        bg: 'gray.800',
-      },
-      _hover: {
-        bg: 'gray.800',
-      },
-      // _click: {
-
-      // }
-      // bg: props.colorMode === 'dark' ? 'green.300' : 'red.500',
-    }),
+    solid: SolidButton,
     outline: {
       _active: {
         bg: 'gray.100',
-        // color: 'white',
       },
     },
   },
 };
+
+export default Button;
