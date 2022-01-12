@@ -12,13 +12,16 @@ import { useProducts } from 'app/contexts/products/provider';
 
 import ConfigTables from '@/components/templates/ConfigTables';
 import { ProductsProvider } from 'app/contexts/products/provider';
-import Input from '@/components/ui/Input/Input';
+
+import GroupButtons from '@/components/common/GroupButtons/GroupButton';
+import ProductsList from '@/components/common/Lists/ProductsLists';
+import ProductsCaroussel from '@/components/common/Carousel/ProductsCarousel';
 
 const Home = () => {
   return (
     <Box h={'100%'} p={4}>
       <Heading>Find your style</Heading>
-      <FilterButtons mt={4} mb={4} />
+      <GroupButtons mt={4} mb={4} />
       <ProductsCaroussel />
       <ProductsList mt={8} />
     </Box>
@@ -26,108 +29,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const FilterButtons = ({ ...props }) => {
-  const filters = [
-    {
-      id: '1',
-      title: 'All',
-    },
-    {
-      id: '2',
-      title: 'Winter',
-      checked: true,
-    },
-  ];
-  return (
-    <ButtonGroup {...props}>
-      {filters.map((item) => {
-        return (
-          <Button key={item.id} variant={item.checked ? 'outline' : 'solid'}>
-            {item.title}
-          </Button>
-        );
-      })}
-    </ButtonGroup>
-  );
-};
-
-const ProductCard = ({ minW, h }) => {
-  return (
-    <Flex flexDirection={'column'} alignItems="center" justifyContent="center">
-      <Image
-        // h="100%"
-        // h=""
-        // h="300px"
-        // h="100%"
-        h={h}
-        borderRadius={12}
-        // w="80%"
-        // minW="226px"
-        w="226px"
-        objectFit="cover"
-        alt="photo"
-        minW={minW}
-        src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-      />
-
-      <Text fontWeight={'medium'} fontSize={'16px'}>
-        Casual Jeans Shoes
-      </Text>
-
-      <MaskedText fontWeight={'bold'} fontSize={'18px'}>
-        178.99
-      </MaskedText>
-    </Flex>
-  );
-};
-
-const ProductsCaroussel = () => {
-  return (
-    <Stack direction={['row']} gap={8} overflow="auto" p={4}>
-      <ProductCard minW="226px" h="300px" />
-      <ProductCard minW="226px" h="300px" />
-      <ProductCard minW="226px" h="300px" />
-    </Stack>
-  );
-};
-
-const MaskedText = ({ children, ...props }) => {
-  return (
-    <>
-      <Flex alignItems="center">
-        <Text
-          fontWeight={'bold'}
-          fontSize={'18px'}
-          color={'primary.900'}
-          mr={1}
-        >
-          $
-        </Text>
-        <Text {...props}>{children}</Text>
-      </Flex>
-    </>
-  );
-};
-
-const ProductsList = ({ ...rest }) => {
-  return (
-    <Box {...rest}>
-      <Flex alignItems="center" mb={4}>
-        <Heading as="h3" size="lg">
-          Products
-        </Heading>
-        <Spacer />
-        <Link color="primary.900" variant="link">
-          See all
-        </Link>
-      </Flex>
-      <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </Grid>
-    </Box>
-  );
-};
