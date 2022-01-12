@@ -2,7 +2,7 @@ import Page from '@/components/layouts/Page';
 import { ChakraProvider } from '@chakra-ui/react';
 import { CategoryProvider } from 'app/contexts/category/provider';
 
-import { theme } from 'app/styles/theme';
+import { theme } from 'app/theme';
 import { GlobalModalProvider } from 'app/contexts/globalModal/provider';
 import { ProductsProvider } from 'app/contexts/products/provider';
 

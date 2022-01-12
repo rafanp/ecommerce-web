@@ -1,5 +1,12 @@
 import { Flex, Box, Grid, GridItem, Spacer, Stack } from '@chakra-ui/layout';
-import { Button, Image, Text, Heading, ButtonGroup } from '@chakra-ui/react';
+import {
+  Button,
+  Image,
+  Text,
+  Heading,
+  ButtonGroup,
+  Link,
+} from '@chakra-ui/react';
 
 import { useProducts } from 'app/contexts/products/provider';
 
@@ -13,7 +20,7 @@ const Home = () => {
       <Heading>Find your style</Heading>
       <FilterButtons />
       <ProductsCaroussel />
-      <ProductsList />
+      <ProductsList mt={8} />
     </Box>
   );
 };
@@ -95,7 +102,12 @@ const MaskedText = ({ children, ...props }) => {
   return (
     <>
       <Flex alignItems="center">
-        <Text fontWeight={'bold'} fontSize={'18px'} color={'orange.300'} mr={1}>
+        <Text
+          fontWeight={'bold'}
+          fontSize={'18px'}
+          color={'primary.900'}
+          mr={1}
+        >
           $
         </Text>
         <Text {...props}>{children}</Text>
@@ -104,15 +116,17 @@ const MaskedText = ({ children, ...props }) => {
   );
 };
 
-const ProductsList = () => {
+const ProductsList = ({ ...rest }) => {
   return (
-    <Box>
-      <Flex>
+    <Box {...rest}>
+      <Flex alignItems="center">
         <Heading as="h3" size="lg">
           Products
         </Heading>
         <Spacer />
-        <Text>See all</Text>
+        <Link color="primary.900" variant="link">
+          See all
+        </Link>
       </Flex>
       <Grid templateColumns="repeat(2, 1fr)" gap={4}>
         <ProductCard />
