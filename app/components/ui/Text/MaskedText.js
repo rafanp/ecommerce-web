@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/react';
 
-const MaskedText = ({ children, ...props }) => {
+const MaskedText = ({ children, fontWeight, fontSize, ...props }) => {
   return (
     <>
-      <Flex alignItems="center">
+      <Flex alignItems="center" {...props}>
         <Text
           fontWeight={'bold'}
           fontSize={'18px'}
@@ -13,7 +13,9 @@ const MaskedText = ({ children, ...props }) => {
         >
           $
         </Text>
-        <Text {...props}>{children}</Text>
+        <Text fontWeight={fontWeight} fontSize={fontSize}>
+          {children}
+        </Text>
       </Flex>
     </>
   );

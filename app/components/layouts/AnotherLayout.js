@@ -1,18 +1,36 @@
-import Header from "@/components/common/Header";
-import Navigation from "@/components/common/Navigation";
+import Header from '@/components/common/Header';
+import { Grid, GridItem, Box } from '@chakra-ui/react';
 
-const AnotherLayout = (props) => {
+const Page = (props) => {
   const { children } = props;
   return (
     <>
-      {/* <Header /> */}
-      <div>
-        <Navigation />
-        <main>{children}</main>
-      </div>
-      <h2>Another Layout</h2>
+      <Grid
+        h={'100vh'}
+        templateRows="60px 1fr"
+        templateColumns="repeat(5, 1fr)"
+        // mg={0}
+        backgroundImage={'/background.svg'}
+        backgroundRepeat="no-repeat"
+        // mb={8}
+        // gap={8}
+        // p={4}
+        // overflow={"hidden"}
+      >
+        {/* <GridItem rowSpan={2} colSpan={1}>
+          <Navigation />
+        </GridItem> */}
+
+        <GridItem colSpan={5}>
+          <Header />
+        </GridItem>
+
+        <GridItem colSpan={{ base: 5, md: 5 }} overflow="auto">
+          {children}
+        </GridItem>
+      </Grid>
     </>
   );
 };
 
-export default AnotherLayout;
+export default Page;

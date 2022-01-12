@@ -19,17 +19,15 @@ const GetProviders = ({ children }) => {
 };
 
 export default function MyApp({ Component, pageProps }) {
+  console.log('Component :', Component.getLayout);
   const getLayout =
+    // <GetProviders>{Component.getLayout}</GetProviders> ||
     Component.getLayout ||
     ((page) => (
-      <GetProviders>
-        <Page>{page}</Page>
-      </GetProviders>
+      // <GetProviders>
+      <Page>{page}</Page>
+      // </GetProviders>
     ));
 
-  return getLayout(
-    <GetProviders>
-      <Component {...pageProps} />
-    </GetProviders>
-  );
+  return <GetProviders>{getLayout(<Component {...pageProps} />)}</GetProviders>;
 }

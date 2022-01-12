@@ -8,8 +8,8 @@ import {
   Link,
 } from '@chakra-ui/react';
 
-const GroupButtons = ({ ...props }) => {
-  const filters = [
+const GroupButtons = ({ data, ...props }) => {
+  const filters = data || [
     {
       id: '1',
       title: 'All',
@@ -24,7 +24,7 @@ const GroupButtons = ({ ...props }) => {
     <ButtonGroup {...props}>
       {filters.map((item) => {
         return (
-          <Button key={item.id} variant={item.checked ? 'outline' : 'solid'}>
+          <Button key={item.id} variant={item.checked ? 'solid' : 'outline'}>
             {item.title}
           </Button>
         );
