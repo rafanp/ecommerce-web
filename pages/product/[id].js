@@ -6,8 +6,12 @@ import ProductsList from '@/components/common/Lists/ProductsLists';
 import ProductsCaroussel from '@/components/common/Carousel/ProductsCarousel';
 import AnotherLayout from '@/components/layouts/AnotherLayout';
 import MaskedText from '@/components/ui/Text/MaskedText';
+import { useState } from 'react';
+import { getDataById, selectIndexById } from 'app/services/fauna';
 
-const Product = () => {
+const Product = ({ productItem }) => {
+  const [selected, setSelected] = useState(['1']);
+
   return (
     <Flex flexDir="column" h={'100%'} p={4} alignContent="center" gap={4}>
       <Heading
@@ -17,7 +21,7 @@ const Product = () => {
         fontWeight={'semibold'}
         // mb={2}
       >
-        Beach Crochet Lace
+        {productItem.name}
       </Heading>
       <MaskedText
         fontWeight={'bold'}
@@ -25,7 +29,7 @@ const Product = () => {
         justifyContent="center"
         // mb={4}
       >
-        39.99
+        {productItem.price}
       </MaskedText>
       <Image
         borderRadius={12}
@@ -34,29 +38,30 @@ const Product = () => {
         // h="100vw"
         objectFit="cover"
         alt="photo"
-        src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+        src={productItem.picture}
       />
       <Heading as="h5" size="sm" fontWeight={'semibold'} mt={4}>
         Select Size
       </Heading>
       <GroupButtons
+        onClick={(category) => setSelected([category.id])}
+        selected={selected}
         data={[
           {
             id: '1',
-            title: 'S',
+            name: 'S',
           },
           {
             id: '2',
-            title: 'M',
-            checked: true,
+            name: 'M',
           },
           {
             id: '3',
-            title: 'L',
+            name: 'L',
           },
           {
-            id: '3',
-            title: 'XL',
+            id: '4',
+            name: 'XL',
           },
         ]}
       />
@@ -68,7 +73,7 @@ const Product = () => {
           justifyContent="center"
           // mb={4}
         >
-          39.99
+          {productItem.price}
         </MaskedText>
         <Spacer />
         <Button fontSize="14px" width="50%" h="54px">
@@ -84,3 +89,14 @@ export default Product;
 Product.getLayout = function getLayout(page) {
   return <AnotherLayout>{page}</AnotherLayout>;
 };
+
+export async function getServerSideProps({ params }) {
+  console.log('>>>> params :', params);
+  const productItem = await getDataById('get_product_by_id', params.id);
+
+  return {
+    props: {
+      productItem: productItem || null,
+    },
+  };
+}

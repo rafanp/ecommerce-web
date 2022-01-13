@@ -22,6 +22,7 @@ const Button = {
     fontWeight: 'semi-bold',
     borderRadius: '12px',
     transitionDuration: '0.4s',
+    // minWidth: 'auto',
   },
   // 2. We can add a new button size or extend existing
   // sizes: {

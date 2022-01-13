@@ -1,19 +1,27 @@
-import { Client } from "faunadb";
-import { query as q } from "faunadb";
+import { Client } from 'faunadb';
+import { query as q } from 'faunadb';
 
 export const fauna = new Client({
   secret: process.env.FAUNADB_KEY,
 });
 
 export const selectIndexById = (index, id) => {
-  return q.Select("ref", q.Get(q.Match(q.Index(index), id)));
+  return q.Select('ref', q.Get(q.Match(q.Index(index), id)));
+};
+
+export const getDataById = async (index, id) => {
+  console.log('>>>> getDataById');
+  console.log('index :', index);
+  const query = await fauna.query(q.Get(q.Match(q.Index(index), id)));
+  console.log('query :', query);
+  return query.data;
 };
 
 export const getAllData = async (index) => {
   const query = await fauna.query(
     q.Map(
       q.Paginate(q.Match(index), { size: 100 }),
-      q.Lambda("doc", q.Select("data", q.Get(q.Var("doc"))))
+      q.Lambda('doc', q.Select('data', q.Get(q.Var('doc'))))
     )
   );
 

@@ -8,28 +8,29 @@ import {
   Link,
 } from '@chakra-ui/react';
 
-const GroupButtons = ({ data, ...props }) => {
-  const filters = data || [
-    {
-      id: '1',
-      title: 'All',
-    },
-    {
-      id: '2',
-      title: 'Winter',
-      checked: true,
-    },
-  ];
+const GroupButtons = ({ data, selected, onClick, ...props }) => {
   return (
-    <ButtonGroup {...props}>
-      {filters.map((item) => {
-        return (
-          <Button key={item.id} variant={item.checked ? 'solid' : 'outline'}>
-            {item.title}
-          </Button>
-        );
-      })}
-    </ButtonGroup>
+    <Flex>
+      <ButtonGroup overflow="auto" width={'100%'} {...props}>
+        {data.map((item) => {
+          return (
+            <Button
+              // width="fit-content"
+              minWidth={'auto'}
+              key={item.id}
+              variant={
+                selected.some((k) => k === item.id) ? 'solid' : 'outline'
+              }
+              // variant={item.checked ? 'solid' : 'outline'}
+              onClick={() => onClick(item)}
+              // checked={}
+            >
+              {item.name}
+            </Button>
+          );
+        })}
+      </ButtonGroup>
+    </Flex>
   );
 };
 
