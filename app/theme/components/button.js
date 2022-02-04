@@ -11,11 +11,9 @@ const SolidButton = (props) => ({
   _hover: {
     bg: 'gray.800',
   },
-  // _click: {
-
-  // }
-  // bg: props.colorMode === 'dark' ? 'green.300' : 'red.500',
 });
+
+const ConfigButton = () => ({});
 
 const Button = {
   baseStyle: {

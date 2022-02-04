@@ -4,6 +4,7 @@ import { FiSearch, FiShoppingBag, FiMenu } from 'react-icons/fi';
 import { Icon } from '@chakra-ui/react';
 import { Avatar } from '@chakra-ui/avatar';
 import Input from '@/components/ui/Input/Input';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -22,7 +23,9 @@ const Header = () => {
 
       <Flex align="center">
         <Icon as={FiSearch} color="gray.600" w={6} h={6} mr={8} />
-        <Icon as={FiShoppingBag} color="gray.600" w={6} h={6} />
+        <Link href="/cart" passHref>
+          <Icon as={FiShoppingBag} color="gray.600" w={6} h={6} />
+        </Link>
       </Flex>
     </Flex>
   );
